@@ -11,5 +11,8 @@ driver.get("https://www.selenium.dev/selenium/web/web-form.html")
 submit_button = driver.find_element(By.CSS_SELECTOR, value="button")
 submit_button.click()
 
+# find title submit
+elements = driver.find_elements(By.CLASS_NAME, 'display-6')
+
 # back to web-form
 driver.back
