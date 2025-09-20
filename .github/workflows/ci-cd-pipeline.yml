@@ -33,7 +33,7 @@ jobs:
       - name: Run tests
         run: |
           cd auto_framework
-          pytest -m smoke --html=report.html --self-contained-html
+          pytest -m smoke --html=reports/report.html --self-contained-html
       
       - name: Upload test report
         if: always()
