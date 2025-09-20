@@ -32,6 +32,7 @@ jobs:
 
       - name: Run tests
         run: |
+          cd auto_framework
           pytest -m smoke --html=report.html --self-contained-html
       
       - name: Upload test report
