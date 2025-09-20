@@ -40,4 +40,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: smoke-test-report
-          path: report.html
+          path: auto_framework/reports/report.html
