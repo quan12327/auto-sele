@@ -5,7 +5,7 @@ from pages.dash_board_page import DashBoardPage
 from pages.recuit_page import RecuitPage
 from time import sleep
 from datetime import datetime
-
+from util.config_reader import ConfigReader
 
 def random_name(prefix="Test"):
     timestamp = datetime.now().strftime("%Y%m%d%H%M%S")  # YYYYMMDDHHMMSS
@@ -17,9 +17,9 @@ class TestOrangeHRM(BaseTest):
 
     @pytest.mark.smoke
     def test_login(self):
-        username = "Admin"
-        password = "admin123"
-        
+        username = ConfigReader.get_username()
+        password = ConfigReader.get_password()
+
         login_page = LoginPage(self.driver)
         login_page.login(username, password)
         sleep(2)
