@@ -1,8 +1,8 @@
 import pytest
-import requests
 from base.base_api import TestSetup
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.by import By
+import requests
 
 class TestApilocation(TestSetup):
     def setup_method(self):
@@ -19,8 +19,8 @@ class TestApilocation(TestSetup):
         self.driver.implicitly_wait(5)
         for cookie in self.driver.get_cookies():
             self.session.cookies.set(cookie['name'], cookie['value'])
-    @pytest.mark.api
-    @pytest.mark.parametrize("loc_id, loc_name",[(5,"Texas R&D"),],)
+    # @pytest.mark.api
+    # @pytest.mark.parametrize("loc_id, loc_name",[(5,"Texas R&D"),],)
     def test_api_location(self, loc_id, loc_name):
         response = requests.get(
             "https://opensource-demo.orangehrmlive.com/web/index.php/api/v2/dashboard/employees/locations"

@@ -9,7 +9,7 @@ class BaseTest:
         option.add_argument("--headless")
         option.add_argument("--no-sandbox")
         option.add_argument("--disable-dev-shm-usage")
-        driver = webdriver.Edge(options=option)
+        self.driver = webdriver.Edge(options=option)
         self.driver.maximize_window()  # Maximize the browser window
         self.driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login")
         request.cls.driver = self.driver  # Assign driver to the test class

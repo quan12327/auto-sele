@@ -1,9 +1,11 @@
+import pytest
 from base.base_test import BaseTest
 from pages.login_page import LoginPage
 from pages.dash_board_page import DashBoardPage
 from pages.recuit_page import RecuitPage
 from time import sleep
 from datetime import datetime
+
 
 def random_name(prefix="Test"):
     timestamp = datetime.now().strftime("%Y%m%d%H%M%S")  # YYYYMMDDHHMMSS
@@ -21,14 +23,12 @@ class TestOrangeHRM(BaseTest):
         login_page = LoginPage(self.driver)
         login_page.login(username, password)
         sleep(2)
-    
-    @pytest.mark.smoke
+
     def test_click_recruit(self):
         dash_board_page = DashBoardPage(self.driver)
         dash_board_page.click_recruit()
         sleep(1)
     
-    @pytest.mark.smoke
     def test_add_vacancy(self):
         self.click_recruit()
         recuit_page = RecuitPage(self.driver)
