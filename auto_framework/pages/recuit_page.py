@@ -32,6 +32,7 @@ class RecuitPage(BasePage):
 
     def __init__(self, driver):
         super().__init__(driver)
+
     def click_vacancy(self):
         self.click(self.vacancy)
     def click_add_vacancy(self):
@@ -125,3 +126,39 @@ class RecuitPage(BasePage):
     def log_out_user(self):
         self.click(self.user_name)
         self.click(self.log_out)
+
+    def test_add_vacancy_flow(self):
+        self.click_vacancy()
+        sleep(1)
+        self.click_add_vacancy()
+        sleep(1)
+        self.enter_vacancy_name(self.vacancy_name)
+        sleep(1)
+        self.type_description("Responsible for overseeing the IT department and ensuring the smooth operation of all technology systems.")
+        sleep(1)
+        self.type_hiring_manager()
+        sleep(1)
+        self.enter_number_of_positions("3")
+        sleep(1)
+        self.click_active_button()
+        sleep(1)
+        self.click_save_button()
+        sleep(1)
+        self.verify_vacancy_added()
+        sleep(1)
+        self.click_cancel_button()
+        sleep(1)
+        self.verify_vacancy_page()
+        sleep(1)
+        self.select_job_title_filter("Automaton Tester")
+        sleep(2)
+        self.select_hiring_manager()
+        sleep(2)
+        self.click_search_button()
+        sleep(2)
+        self.verify_record_found()
+        sleep(2)
+        self.verify_all_vacancies(expected_vacancy_name=self.vacancy_name,expected_job_title="Automaton Tester",expected_manager=recuit_page.get_hiring_manager_name(),expected_status="Active")
+        sleep(2)
+        self.log_out_user()
+        sleep(2)

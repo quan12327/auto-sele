@@ -13,6 +13,7 @@ class TestOrangeHRM(BaseTest):
 
     vacancy_name = random_name("Vacancy")
 
+    @pytest.mark.smoke
     def test_login(self):
         username = "Admin"
         password = "admin123"
@@ -20,12 +21,14 @@ class TestOrangeHRM(BaseTest):
         login_page = LoginPage(self.driver)
         login_page.login(username, password)
         sleep(2)
-
-    def click_recruit(self):
+    
+    @pytest.mark.smoke
+    def test_click_recruit(self):
         dash_board_page = DashBoardPage(self.driver)
         dash_board_page.click_recruit()
         sleep(1)
     
+    @pytest.mark.smoke
     def test_add_vacancy(self):
         self.click_recruit()
         recuit_page = RecuitPage(self.driver)
