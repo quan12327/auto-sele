@@ -23,16 +23,17 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           
-      - name: Install Google Chrome
+      - name: Install Microsoft Edge
         run: |
-          wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-          sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
+          wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
+          sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main"
           sudo apt-get update
-          sudo apt-get install -y google-chrome-stable
+          sudo apt-get install -y microsoft-edge-stable
 
       - name: Run tests
         run: |
-          python -m pytest auto_framework/test/orange_test.py -m smoke --html=report.html --self-contained-html
+          cd auto_framework
+          pytest -m smoke --html=report.html --self-contained-html
       
       - name: Upload test report
         if: always()
